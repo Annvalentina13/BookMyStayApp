@@ -1,5 +1,10 @@
 package com.bookmystay.model;
 
+/**
+ * CLASS - Reservation
+ *
+ * Use Case 5 & 6: Booking Request + Allocation
+ */
 public class Reservation {
 
     private String guestName;
