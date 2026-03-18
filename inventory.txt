@@ -1,0 +1,2 @@
+Standard=2
+Deluxe=2
