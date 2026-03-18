@@ -3,54 +3,41 @@ package com.bookmystay.inventory;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * CLASS - RoomInventory
- *
- * Use Case 3: Centralized Room Inventory Management
- *
- * @version 3.1
- */
 public class RoomInventory {
 
-    /**
-     * Stores available room count for each room type.
-     *
-     * Key -> Room type name
-     * Value -> Available room count
-     */
-    private Map<String, Integer> roomAvailability;
+    private Map<String, Integer> inventory;
 
-    /**
-     * Constructor initializes the inventory
-     * with default availability values.
-     */
     public RoomInventory() {
-        roomAvailability = new HashMap<>();
-        initializeInventory();
+        inventory = new HashMap<>();
     }
 
-    /**
-     * Initializes room availability data.
-     */
-    private void initializeInventory() {
-
-        roomAvailability.put("Single Room", 5);
-        roomAvailability.put("Double Room", 3);
-        roomAvailability.put("Suite Room", 2);
-
+    // Add rooms
+    public void addRoom(String type, int count) {
+        inventory.put(type, count);
     }
 
-    /**
-     * Returns the current availability map.
-     */
+    // Check availability
+    public boolean isAvailable(String type) {
+        return inventory.getOrDefault(type, 0) > 0;
+    }
+
+    // Decrement after booking
+    public void decrement(String type) {
+        inventory.put(type, inventory.get(type) - 1);
+    }
+
+    // ✅ FIX 1: Used in UseCase3
     public Map<String, Integer> getRoomAvailability() {
-        return roomAvailability;
+        return inventory;
     }
 
-    /**
-     * Updates availability for a specific room type.
-     */
-    public void updateAvailability(String roomType, int count) {
-        roomAvailability.put(roomType, count);
+    // ✅ FIX 2: Used in older services
+    public void updateAvailability(String type, int count) {
+        inventory.put(type, count);
+    }
+
+    // Display
+    public void displayInventory() {
+        System.out.println("Current Inventory: " + inventory);
     }
 }
