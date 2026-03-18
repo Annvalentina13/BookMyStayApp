@@ -4,17 +4,21 @@ import com.bookmystay.model.Reservation;
 import com.bookmystay.service.BookingRequestQueue;
 
 /**
- * MAIN CLASS - Use Case 5
+ * MAIN CLASS - UseCase5BookingRequestQueue
+ *
+ * Use Case 5: Booking Request (FIFO)
  */
 public class UseCase5BookingRequestQueue {
 
     public static void main(String[] args) {
 
-        System.out.println("=== Booking Request Queue ===");
+        // Display header
+        System.out.println("=== Booking Request Queue ===\n");
 
+        // Initialize queue
         BookingRequestQueue bookingQueue = new BookingRequestQueue();
 
-        // Create requests
+        // Create booking requests
         Reservation r1 = new Reservation("Abhi", "Single");
         Reservation r2 = new Reservation("Subha", "Double");
         Reservation r3 = new Reservation("Vanmathi", "Suite");
@@ -29,8 +33,8 @@ public class UseCase5BookingRequestQueue {
             Reservation r = bookingQueue.getNextRequest();
 
             System.out.println(
-                    "Processing: " + r.getGuestName() +
-                            " | Room Type: " + r.getRoomType()
+                "Guest: " + r.getGuestName() +
+                " requested a " + r.getRoomType() + " room."
             );
         }
     }
