@@ -1,36 +1,21 @@
 package com.bookmystay.app;
 
-import com.bookmystay.booking.BookingRequestQueue;
 import com.bookmystay.model.Reservation;
+import com.bookmystay.service.BookingRequestQueue;
 
 /**
  * MAIN CLASS - UseCase5BookingRequestQueue
  *
- * Use Case 5: Booking Request (First-Come-First-Served)
- *
- * Description:
- * This class demonstrates how booking
- * requests are accepted and queued
- * in a fair and predictable order.
- *
- * No room allocation or inventory
- * update is performed here.
- *
- * @version 5.0
+ * Use Case 5: Booking Request (FIFO)
  */
 public class UseCase5BookingRequestQueue {
 
-    /**
-     * Application entry point.
-     *
-     * @param args Command-line arguments
-     */
     public static void main(String[] args) {
 
-        // Display application header
-        System.out.println("Booking Request Queue\n");
+        // Display header
+        System.out.println("=== Booking Request Queue ===\n");
 
-        // Initialize booking queue
+        // Initialize queue
         BookingRequestQueue bookingQueue = new BookingRequestQueue();
 
         // Create booking requests
@@ -38,15 +23,19 @@ public class UseCase5BookingRequestQueue {
         Reservation r2 = new Reservation("Subha", "Double");
         Reservation r3 = new Reservation("Vanmathi", "Suite");
 
-        // Add requests to the queue
+        // Add to queue
         bookingQueue.addRequest(r1);
         bookingQueue.addRequest(r2);
         bookingQueue.addRequest(r3);
 
-        // Display queued booking requests in FIFO order
+        // Process queue (FIFO)
         while (bookingQueue.hasPendingRequests()) {
-            Reservation next = bookingQueue.getNextRequest();
-            System.out.println("Guest: " + next.getGuestName() + " requested a " + next.getRoomType() + " room.");
+            Reservation r = bookingQueue.getNextRequest();
+
+            System.out.println(
+                "Guest: " + r.getGuestName() +
+                " requested a " + r.getRoomType() + " room."
+            );
         }
     }
 }
